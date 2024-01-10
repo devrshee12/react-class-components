@@ -1,6 +1,7 @@
-import { Component } from "react";
+import { Component, Suspense, lazy } from "react";
 import axios from "axios"
-import User from "./User";
+// import User from "./User";
+const User = lazy(() => import("./User"));
 
 class UsersList extends Component{
     constructor(props){
@@ -32,14 +33,17 @@ class UsersList extends Component{
             <div className="App-header">
                 <h1>User's list</h1>
                 <div>
+                    <Suspense fallback="Loading..."> 
                     {
                         users ?
                         users.map((user) => {
                             return(
-                                <User key={user?.id} user={user}/>
-                            )
-                        }) : <div>Loading ... </div>
+                                    <User key={user?.id} user={user}/>
+
+                                    )
+                                }) : <div>Loading ... </div>
                     }
+                    </Suspense>
                 </div>
             </div>
         )

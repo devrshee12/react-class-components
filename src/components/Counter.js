@@ -6,8 +6,9 @@ class Counter extends Component{
         this.state = {
             count: 1,
         }
-        this.handleIncrease = this.handleIncrease.bind(this); // do this in constructor to bind this
-        this.handleDecrease = this.handleDecrease.bind(this);
+        // this.handleIncrease = this.handleIncrease.bind(this); // do this in constructor to bind this
+        // this.handleDecrease = this.handleDecrease.bind(this);
+
     }
 
     componentDidMount(){
@@ -15,6 +16,7 @@ class Counter extends Component{
     }
 
     componentDidUpdate(){   
+        //props 
         console.log("component did update called in Counter components");
     }
 
@@ -22,8 +24,8 @@ class Counter extends Component{
         console.log("component will unmount called in counter components");
     }
 
-    handleIncrease(){
-        // console.log(this);
+    handleIncrease = () => { // use arrow functions instead of regular function to bind this in arrow function it will 
+        console.log(this);
         this.setState(function(state, props){
             return{
                 count: state.count + 1
@@ -31,7 +33,7 @@ class Counter extends Component{
         })
     }
 
-    handleDecrease(){
+    handleDecrease = () => {
         // console.log(this);
         if(this.state.count - 1 < 0){
             alert("You can not decrease count");
@@ -42,7 +44,7 @@ class Counter extends Component{
                 return {
                     count: state.count - 1
                 }
-            })
+            },)
         }
     }
 

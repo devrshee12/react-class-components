@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {RouterProvider, createBrowserRouter} from "react-router-dom"
 import Counter from './components/Counter';
-import UsersList from './components/UsersList';
+// import UsersList from './components/UsersList';
+import ParentComponent from './components/Parentcomponent';
+import FocusInput from './components/FocusInput';
+import FRParentInput from './components/FRParentInput';
+import HocApp from './components/HocApp';
+const UsersList = lazy(() => import("./components/UsersList")) // used lazy loading 
 
 
 
@@ -15,12 +20,24 @@ const appRouter = createBrowserRouter([
     element: <App/>,
   },
   {
+    path: "/ref-direct-focus",
+    element: <FocusInput/>
+  },
+  {
+    path: "/forward-ref",
+    element: <FRParentInput/>
+  },
+  {
+    path:"/hoc",
+    element: <HocApp/>
+  },
+  {
     path:"/counter",
     element: <Counter/>
   },
   {
     path:"/users",
-    element:<UsersList/>
+    element:<Suspense fallback="Loading ..."><UsersList/></Suspense>
   }
 ])
 
