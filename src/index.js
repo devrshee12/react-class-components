@@ -10,6 +10,8 @@ import ParentComponent from './components/Parentcomponent';
 import FocusInput from './components/FocusInput';
 import FRParentInput from './components/FRParentInput';
 import HocApp from './components/HocApp';
+import MemoParent from './components/MemoParent';
+import MemoChild from './components/MemoChild';
 const UsersList = lazy(() => import("./components/UsersList")) // used lazy loading 
 
 
@@ -18,6 +20,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+  },
+  {
+    path: "/memo",
+    element: <MemoParent></MemoParent>,
   },
   {
     path: "/ref-direct-focus",
@@ -40,6 +46,7 @@ const appRouter = createBrowserRouter([
     element:<Suspense fallback="Loading ..."><UsersList/></Suspense>
   }
 ])
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
